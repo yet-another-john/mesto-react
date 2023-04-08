@@ -11,6 +11,7 @@ function App() {
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false);
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false);
+  const [selectedCard, setSelectedCard] = React.useState(false);
 
   function handleEditAvatarClick() {
     setEditAvatarPopupOpen(!isEditAvatarPopupOpen);
@@ -24,17 +25,22 @@ function App() {
     setEditProfilePopupOpen(!isEditProfilePopupOpen);
   };
 
+  function handleCardClick(card) {
+    setSelectedCard(card);
+  };
+
   function closeAllPopups() {
     setEditAvatarPopupOpen(false);
     setAddPlacePopupOpen(false);
     setEditProfilePopupOpen(false);
+    setSelectedCard(false);
   };
 
   return (
     <div className="page">
       <div className="content">
         <Header />
-        <Main onEditAvatar={handleEditAvatarClick} onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} />
+        <Main onEditAvatar={handleEditAvatarClick} onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} onCardClick={handleCardClick} />
         <Footer />
         <PopupWithForm popupId="popup-avatar" formName="popup-avatar-form" formHeader="Обновить аватар" buttonId="popup-avatar-form-button" buttonSign="Сохранить" isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups}>
           <input name="input-avatar-link" className="popup__input" type="url" placeholder="Ссылка на картинку" required />
@@ -53,7 +59,8 @@ function App() {
           <span className="popup__input-error input-card-link-error"></span>
         </PopupWithForm>
         <PopupWithForm popupId="popup-confirmation" formName="popup-confirmation-form" formHeader="Вы уверены?" buttonId="popup-confirmation-form-button" buttonSign="Да" />
-        <ImagePopup />
+        {console.log(selectedCard)}
+        <ImagePopup card={selectedCard} onClose={closeAllPopups} />
       </div>
     </div>
   );
