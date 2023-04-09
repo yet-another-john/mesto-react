@@ -13,7 +13,7 @@ function Card(props) {
             <button className="element__delete" type="button">
                 <img src={trashCan} alt="Иконка." />
             </button>
-            <img className="element__image element__mask" src={card.link} alt="Картинка." onClick={handleClick} />
+            <img className="element__image element__mask" src={card.link} alt={card.name} onClick={handleClick} />
             <div className="element__sign-like">
                 <h2 className="element__sign">{card.name}</h2>
                 <div>
