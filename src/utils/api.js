@@ -62,6 +62,21 @@ class Api {
     }).then(this._checkResponse);
   }
 
+  changeLikeCardStatus(cardId, flag) {
+    if (flag) {
+      return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+        method: 'PUT',
+        headers: this._headers.headers,
+      }).then(this._checkResponse);
+    } else {
+      return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+        method: 'DELETE',
+        headers: this._headers.headers,
+      }).then(this._checkResponse);
+  
+    }
+  }
+
   changeAvatar(link) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
