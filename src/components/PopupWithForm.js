@@ -7,7 +7,7 @@ function PopupWithForm(props) {
                 <button className="popup__close-button" type="button" onClick={props.onClose}>
                     <img className="popup__close-icon" src={closeIcon} alt="Иконка." />
                 </button>
-                <form name={props.formName} className="form" noValidate>
+                <form name={props.formName} className="form" onSubmit={props.onSubmit} noValidate>
                     <h2 className="popup__header">{props.formHeader}</h2>
                     {props.children}
                     <button id={props.buttonId} className="popup__submit-button" type="submit">{props.buttonSign}</button>
