@@ -3,20 +3,27 @@ import PopupWithForm from './PopupWithForm';
 
 function AddPlacePopup(props) {
 
-    const [newLocation, setNewLocation] = React.useState('');
-    const [newLink, setNewLink] = React.useState('');
+    const newLocationRef = React.useRef();
+    const newLinkRef = React.useRef();
+
+    React.useEffect(() => {
+        if (!props.isOpen) {
+            newLocationRef.current.value = '';
+            newLinkRef.current.value = '';
+        }
+    }, [props.isOpen]);
 
     function handleLocationChange(e) {
-        setNewLocation(e.target.value);
+        newLocationRef.current.value = e.target.value;
     }
 
     function handleLinkChange(e) {
-        setNewLink(e.target.value);
+        newLinkRef.current.value = e.target.value;
     }
 
     function handleSubmit(e) {
         e.preventDefault();
-        props.onAddPlace(newLocation, newLink);
+        props.onAddPlace(newLocationRef.current.value, newLinkRef.current.value);
     }
 
     return (
@@ -37,6 +44,7 @@ function AddPlacePopup(props) {
                 placeholder="Название"
                 minLength="2"
                 maxLength="30"
+                ref={newLocationRef}
                 required />
             <span
                 className="popup__input-error input-card-location-error">
@@ -47,6 +55,7 @@ function AddPlacePopup(props) {
                 type="url"
                 onChange={handleLinkChange}
                 placeholder="Ссылка на картинку"
+                ref={newLinkRef}
                 required />
             <span
                 className="popup__input-error input-card-link-error">
