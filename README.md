@@ -1,5 +1,3 @@
-Проект: Место.
+Nested, HTML, CSS, JavaScript, React.
 
-Основной задачей проекта является формирование навыков создания интерактивных веб страниц (приложений).
-
-Структура БЭМ (Nested), HTML, CSS, JavaScript, React.
+Project: https://stoliarovea.github.io/mesto-react
